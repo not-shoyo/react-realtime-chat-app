@@ -2,7 +2,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 const cors = require("cors");
-const { Server } = require("socket.io"); // trying cors stuff.... WORKED!
+const { Server } = require("socket.io"); // trying cors stuff.... WORKED for localhost stuff! and for server deployment i just put '*' and that worked too
 
 const router = require("./router");
 
@@ -14,9 +14,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "*",
   },
 });
+// const io = new Server(server);
 
 app.use(router);
 app.use(cors());
